@@ -1,10 +1,9 @@
-import nodemailer from 'nodemailer';
 import { EMAIL_ADD } from '$env/static/private';
 import { EMAIL_HOST } from '$env/static/private';
 import { EMAIL_PORT } from '$env/static/private';
 import { EMAIL_PW } from '$env/static/private';
 
-export async function POST({ request }) {
+/* export async function POST({ request }) {
 	const data = await request.json();
 
 	// Set up the email transporter
@@ -38,4 +37,4 @@ export async function POST({ request }) {
 			body: { error: 'Failed to send email' }
 		};
 	}
-}
+} */
