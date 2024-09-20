@@ -642,19 +642,4 @@
 		transition-duration: 1s;
 		-webkit-transition-duration: 1s;
 	}
-
-	:global(#content #slider .navigation ul li .li__info) {
-		/* Existing styles for .li__info */
-		position: relative; /* Add this to establish a stacking context */
-		z-index: 1; /* Ensure .li__info is above other elements by default */
-	}
-
-	:global(#content #slider .navigation ul li .li__info-mask) {
-		/* Existing styles for .li__info-mask */
-		z-index: 2; /* Place .li__info-mask above .li__info */
-	}
-
-	:global(#content #slider .navigation ul li.active .li__info) {
-		z-index: 0; /* Send .li__info behind .li__info-mask when active */
-	}
 </style>

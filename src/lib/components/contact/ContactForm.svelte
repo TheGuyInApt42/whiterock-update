@@ -6,6 +6,8 @@
 	let phone = '';
 	let message = '';
 
+	const randomString = 'bda5ebce250c9a660691cf03521809c4';
+
 	let chars = 350;
 
 	let isSuccess = false;
@@ -29,7 +31,7 @@
 
 		if (!phone) {
 			errors.phone = 'Field should not be empty';
-		} else if (!/^\d{10}$/.test(phone)) {
+		} else if (!/^\d{10}$/.test(phone.trim())) {
 			errors.phone = 'Phone number must be exactly 10 digits';
 		}
 
@@ -43,21 +45,34 @@
 	const handleSubmit = async () => {
 		if (validateForm()) {
 			try {
-				await axios.post('https://salty-garden-03934.herokuapp.com/send-contact', {
-					Name: name,
-					Email: email,
-					Phone: phone,
-					Message: message
-				});
-				isSuccess = true;
-				// Reset form fields
-				name = '';
-				email = '';
-				phone = '';
-				message = '';
-				chars = 350; // Reset character count
+				const response = await axios.post(
+					`https://formsubmit.co/${randomString}`,
+					{
+						name: name,
+						email: email,
+						phone: phone,
+						message: message
+					},
+					{
+						headers: {
+							Accept: 'application/json' // Optional: for JSON response
+						}
+					}
+				);
+
+				if (response.status === 200) {
+					isSuccess = true;
+					// Reset form fields
+					name = '';
+					email = '';
+					phone = '';
+					message = '';
+					chars = 350; // Reset character count
+				} else {
+					console.error('Submission failed:', response.data);
+				}
 			} catch (error) {
-				console.error(error);
+				console.error('Error during submission:', error);
 			}
 		}
 	};
@@ -72,6 +87,7 @@
 			<input
 				type="text"
 				id="name"
+				name="name"
 				class="form-input"
 				bind:value={name}
 				placeholder="Full Name"
@@ -86,6 +102,7 @@
 			<input
 				type="email"
 				id="email"
+				name="email"
 				class="form-input"
 				bind:value={email}
 				placeholder="you@example.com"
@@ -98,8 +115,8 @@
 			<label class="input-label" for="phone">Phone Number</label>
 			<input
 				type="tel"
-				pattern="[0-9]{10}"
 				id="phone"
+				name="phone"
 				bind:value={phone}
 				class="form-input"
 				placeholder="e.g. 1234567890"
@@ -113,6 +130,7 @@
 			<label class="input-label" for="message">Message</label>
 			<textarea
 				id="message"
+				name="message"
 				bind:value={message}
 				on:input={charCount}
 				class="form-input"
@@ -124,6 +142,7 @@
 			<span id="characterCount">{chars}</span>
 			{#if errors.message}<span class="error">{errors.message}</span>{/if}
 		</div>
+		<input type="hidden" name="_subject" value="New submission!" />
 
 		<div class="input-wrap btn-wrap">
 			<button id="submit_button">Get In Touch</button>

@@ -1,7 +1,3 @@
-<script>
-	import TestimonialForm from './TestimonialForm.svelte';
-</script>
-
 <article>
 	<h1>Testimonials</h1>
 	<h2>See what others have said!</h2>
@@ -13,14 +9,6 @@
 				while the reception was inside the facility.
 			</p>
 			<p id="visitor">-JG</p>
-		</div>
-	</div>
-
-	<div class="container form-container">
-		<h2 id="testimonial-header">Send us your thoughts on your experience at White Rock!</h2>
-
-		<div class="testimonial-form">
-			<TestimonialForm />
 		</div>
 	</div>
 </article>
