@@ -1,0 +1,12 @@
+name = "whiterock-update"  # Name of your project
+
+
+[env]                          # Default environment variables
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_PORT="587"
+EMAIL_ADD="blackgandalf83@gmail.com"
+EMAIL_PW="wavj zers ngwb hhju"
+
+[env.production]               # Production-specific environment variables
+DATABASE_URL = "your_production_database_url"
+

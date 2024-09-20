@@ -1,17 +1,17 @@
 import nodemailer from 'nodemailer';
 import { env } from '$env/static/private'; // Use $env to access environment variables
 
-export async function POST({ request, event }) {
+export async function POST({ request }) {
 	const data = await request.json();
 
 	// Set up the email transporter
 	const transporter = nodemailer.createTransport({
-		host: event.platform?.env?.EMAIL_HOST,
-		port: event.platform?.env?.EMAIL_PORT,
+		host: env.EMAIL_HOST,
+		port: env.EMAIL_PORT,
 		secure: true,
 		auth: {
-			user: event.platform?.env?.EMAIL_ADD,
-			pass: event.platform?.env?.EMAIL_PW
+			user: env.EMAIL_ADD,
+			pass: env.EMAIL_PW
 		}
 	});
 
