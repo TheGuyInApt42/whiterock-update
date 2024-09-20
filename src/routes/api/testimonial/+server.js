@@ -1,16 +1,19 @@
 import nodemailer from 'nodemailer';
-import { env } from '$env/static/private';
+import { EMAIL_ADD } from '$env/static/private';
+import { EMAIL_HOST } from '$env/static/private';
+import { EMAIL_PORT } from '$env/static/private';
+import { EMAIL_PW } from '$env/static/private';
 
 export async function POST({ request }) {
 	const data = await request.json();
 
 	const transporter = nodemailer.createTransport({
-		host: env.EMAIL_HOST,
-		port: env.EMAIL_PORT,
+		host: EMAIL_HOST,
+		port: EMAIL_PORT,
 		secure: false,
 		auth: {
-			user: env.EMAIL_ADD,
-			pass: env.EMAIL_PW
+			user: EMAIL_ADD,
+			pass: EMAIL_PW
 		}
 	});
 
