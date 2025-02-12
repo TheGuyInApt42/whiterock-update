@@ -1,8 +1,16 @@
+<script>
+	import ExternalLink from '$lib/components/ExternalLink.svelte';
+</script>
+
 <footer>
 	<div id="footer-center">
 		<span id="logo">White Rock</span>
 		<br />
-		Copyright 2024.
+		Copyright 2025.
+		<p>
+			Made By
+			<ExternalLink href={'https://gorhamwebconsulting.com'}>Gorham Web Consulting</ExternalLink>
+		</p>
 	</div>
 </footer>
 
